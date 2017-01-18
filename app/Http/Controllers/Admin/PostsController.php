@@ -41,7 +41,8 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $requestData = $request->all();
+        $requestData = $this->prepare($request->all());
+
         Post::create($requestData);
         Session::flash('flash_message', 'Post added!');
         return redirect('admin/posts');
@@ -83,7 +84,7 @@ class PostsController extends Controller
      */
     public function update($id, Request $request)
     {
-        $requestData = $request->all();
+        $requestData = $this->prepare($request->all());
         $post = Post::findOrFail($id);
         $post->update($requestData);
         Session::flash('flash_message', 'Post updated!');
@@ -102,5 +103,22 @@ class PostsController extends Controller
         Post::destroy($id);
         Session::flash('flash_message', 'Post deleted!');
         return redirect('admin/posts');
+    }
+
+    /**
+     * Prepare the fields for insert / update
+     *
+     * @param $requestData
+     * @return mixed
+     */
+    private function prepare($requestData)
+    {
+        if (empty($requestData['review'])) {
+            $requestData['review'] = null;
+        }
+        if (empty($requestData['rating'])) {
+            $requestData['rating'] = null;
+        }
+        return $requestData;
     }
 }
