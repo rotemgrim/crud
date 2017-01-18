@@ -42,7 +42,6 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $requestData = $this->prepare($request->all());
-
         Post::create($requestData);
         Session::flash('flash_message', 'Post added!');
         return redirect('admin/posts');
@@ -113,6 +112,12 @@ class PostsController extends Controller
      */
     private function prepare($requestData)
     {
+        // In a real app userId will come from logged-in user.
+        if (empty($requestData['userId'])) {
+            $requestData['userId'] = 1;
+        }
+
+        // if review/rating is missing just null it up.
         if (empty($requestData['review'])) {
             $requestData['review'] = null;
         }
