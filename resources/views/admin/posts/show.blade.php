@@ -8,18 +8,19 @@
                     <div class="panel-heading">Post {{ $post->id }}</div>
                     <div class="panel-body">
 
-                        <a href="{{ url('admin/posts/' . $post->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Post"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
+                        <a href="{{ url('admin/posts/' . $post->id . '/edit') }}" class="btn btn-primary btn-xs"
+                           title="Edit Post"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
                         {!! Form::open([
                             'method'=>'DELETE',
                             'url' => ['admin/posts', $post->id],
                             'style' => 'display:inline'
                         ]) !!}
-                            {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
-                                    'type' => 'submit',
-                                    'class' => 'btn btn-danger btn-xs',
-                                    'title' => 'Delete Post',
-                                    'onclick'=>'return confirm("Confirm delete?")'
-                            ))!!}
+                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
+                                'type' => 'submit',
+                                'class' => 'btn btn-danger btn-xs',
+                                'title' => 'Delete Post',
+                                'onclick'=>'return confirm("Confirm delete?")'
+                        ))!!}
                         {!! Form::close() !!}
                         <br/>
                         <br/>
@@ -27,10 +28,30 @@
                         <div class="table-responsive">
                             <table class="table table-borderless">
                                 <tbody>
-                                    <tr>
-                                        <th>ID</th><td>{{ $post->id }}</td>
-                                    </tr>
-                                    <tr><th> UserId </th><td> {{ $post->userId }} </td></tr><tr><th> Title </th><td> {{ $post->title }} </td></tr><tr><th> Body </th><td> {{ $post->body }} </td></tr>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>{{ $post->id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>UserId</th>
+                                    <td>{{ $post->userId }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Title</th>
+                                    <td>{{ $post->title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Body</th>
+                                    <td>{{ $post->body }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Review</th>
+                                    <td>{{ $post->review }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Rating</th>
+                                    <td>{{ $post->rating }}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
