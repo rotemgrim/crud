@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('admin/load-posts', 'Admin\\LoadPostsController@index');
+Route::resource('admin/posts', 'Admin\\PostsController');
